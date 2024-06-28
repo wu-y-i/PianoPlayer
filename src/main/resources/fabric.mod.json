@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "pianoplayer",
+	"version": "${version}",
+	"name": "PianoPlayer",
+	"description": "A piano performance module based on \"piano88\" built to simplify redstone music operations",
+	"authors": [
+		"Lution"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pianoplayer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.lution.piano.PianoPlayer"
+		],
+		"client": [
+			"com.lution.piano.PianoPlayerClient"
+		],
+		"fabric-datagen": [
+			"com.lution.piano.PianoPlayerDataGenerator"
+		]
+	},
+	"mixins": [
+		"pianoplayer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
