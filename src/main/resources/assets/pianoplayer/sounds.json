@@ -1,0 +1,442 @@
+{
+  "n.1_": {
+    "sounds": [
+      "pianoplayer:n/1_"
+    ]
+  },
+  "n.1": {
+    "sounds": [
+      "pianoplayer:n/1"
+    ]
+  },
+  "n.2_": {
+    "sounds": [
+      "pianoplayer:n/2_"
+    ]
+  },
+  "n.2": {
+    "sounds": [
+      "pianoplayer:n/2"
+    ]
+  },
+  "n.3": {
+    "sounds": [
+      "pianoplayer:n/3"
+    ]
+  },
+  "n.4_": {
+    "sounds": [
+      "pianoplayer:n/4_"
+    ]
+  },
+  "n.4": {
+    "sounds": [
+      "pianoplayer:n/4"
+    ]
+  },
+  "n.5_": {
+    "sounds": [
+      "pianoplayer:n/5_"
+    ]
+  },
+  "n.5": {
+    "sounds": [
+      "pianoplayer:n/5"
+    ]
+  },
+  "n.6_": {
+    "sounds": [
+      "pianoplayer:n/6_"
+    ]
+  },
+  "n.6": {
+    "sounds": [
+      "pianoplayer:n/6"
+    ]
+  },
+  "n.7": {
+    "sounds": [
+      "pianoplayer:n/7"
+    ]
+  },
+  "a.1_": {
+    "sounds": [
+      "pianoplayer:a/1_"
+    ]
+  },
+  "a.1": {
+    "sounds": [
+      "pianoplayer:a/1"
+    ]
+  },
+  "a.2_": {
+    "sounds": [
+      "pianoplayer:a/2_"
+    ]
+  },
+  "a.2": {
+    "sounds": [
+      "pianoplayer:a/2"
+    ]
+  },
+  "a.3": {
+    "sounds": [
+      "pianoplayer:a/3"
+    ]
+  },
+  "a.4_": {
+    "sounds": [
+      "pianoplayer:a/4_"
+    ]
+  },
+  "a.4": {
+    "sounds": [
+      "pianoplayer:a/4"
+    ]
+  },
+  "a.5_": {
+    "sounds": [
+      "pianoplayer:a/5_"
+    ]
+  },
+  "a.5": {
+    "sounds": [
+      "pianoplayer:a/5"
+    ]
+  },
+  "a.6_": {
+    "sounds": [
+      "pianoplayer:a/6_"
+    ]
+  },
+  "a.6": {
+    "sounds": [
+      "pianoplayer:a/6"
+    ]
+  },
+  "a.7": {
+    "sounds": [
+      "pianoplayer:a/7"
+    ]
+  },
+  "aa.1_": {
+    "sounds": [
+      "pianoplayer:aa/1_"
+    ]
+  },
+  "aa.1": {
+    "sounds": [
+      "pianoplayer:aa/1"
+    ]
+  },
+  "aa.2_": {
+    "sounds": [
+      "pianoplayer:aa/2_"
+    ]
+  },
+  "aa.2": {
+    "sounds": [
+      "pianoplayer:aa/2"
+    ]
+  },
+  "aa.3": {
+    "sounds": [
+      "pianoplayer:aa/3"
+    ]
+  },
+  "aa.4_": {
+    "sounds": [
+      "pianoplayer:aa/4_"
+    ]
+  },
+  "aa.4": {
+    "sounds": [
+      "pianoplayer:aa/4"
+    ]
+  },
+  "aa.5_": {
+    "sounds": [
+      "pianoplayer:aa/5_"
+    ]
+  },
+  "aa.5": {
+    "sounds": [
+      "pianoplayer:aa/5"
+    ]
+  },
+  "aa.6_": {
+    "sounds": [
+      "pianoplayer:aa/6_"
+    ]
+  },
+  "aa.6": {
+    "sounds": [
+      "pianoplayer:aa/6"
+    ]
+  },
+  "aa.7": {
+    "sounds": [
+      "pianoplayer:aa/7"
+    ]
+  },
+  "aaa.1_": {
+    "sounds": [
+      "pianoplayer:aaa/1_"
+    ]
+  },
+  "aaa.1": {
+    "sounds": [
+      "pianoplayer:aaa/1"
+    ]
+  },
+  "aaa.2_": {
+    "sounds": [
+      "pianoplayer:aaa/2_"
+    ]
+  },
+  "aaa.2": {
+    "sounds": [
+      "pianoplayer:aaa/2"
+    ]
+  },
+  "aaa.3": {
+    "sounds": [
+      "pianoplayer:aaa/3"
+    ]
+  },
+  "aaa.4_": {
+    "sounds": [
+      "pianoplayer:aaa/4_"
+    ]
+  },
+  "aaa.4": {
+    "sounds": [
+      "pianoplayer:aaa/4"
+    ]
+  },
+  "aaa.5_": {
+    "sounds": [
+      "pianoplayer:aaa/5_"
+    ]
+  },
+  "aaa.5": {
+    "sounds": [
+      "pianoplayer:aaa/5"
+    ]
+  },
+  "aaa.6_": {
+    "sounds": [
+      "pianoplayer:aaa/6_"
+    ]
+  },
+  "aaa.6": {
+    "sounds": [
+      "pianoplayer:aaa/6"
+    ]
+  },
+  "aaa.7": {
+    "sounds": [
+      "pianoplayer:aaa/7"
+    ]
+  },
+  "aaaa.1": {
+    "sounds": [
+      "pianoplayer:aaaa/1"
+    ]
+  },
+  "d.1_": {
+    "sounds": [
+      "pianoplayer:d/1_"
+    ]
+  },
+  "d.1": {
+    "sounds": [
+      "pianoplayer:d/1"
+    ]
+  },
+  "d.2_": {
+    "sounds": [
+      "pianoplayer:d/2_"
+    ]
+  },
+  "d.2": {
+    "sounds": [
+      "pianoplayer:d/2"
+    ]
+  },
+  "d.3": {
+    "sounds": [
+      "pianoplayer:d/3"
+    ]
+  },
+  "d.4_": {
+    "sounds": [
+      "pianoplayer:d/4_"
+    ]
+  },
+  "d.4": {
+    "sounds": [
+      "pianoplayer:d/4"
+    ]
+  },
+  "d.5_": {
+    "sounds": [
+      "pianoplayer:d/5_"
+    ]
+  },
+  "d.5": {
+    "sounds": [
+      "pianoplayer:d/5"
+    ]
+  },
+  "d.6_": {
+    "sounds": [
+      "pianoplayer:d/6_"
+    ]
+  },
+  "d.6": {
+    "sounds": [
+      "pianoplayer:d/6"
+    ]
+  },
+  "d.7": {
+    "sounds": [
+      "pianoplayer:d/7"
+    ]
+  },
+  "dd.1_": {
+    "sounds": [
+      "pianoplayer:dd/1_"
+    ]
+  },
+  "dd.1": {
+    "sounds": [
+      "pianoplayer:dd/1"
+    ]
+  },
+  "dd.2_": {
+    "sounds": [
+      "pianoplayer:dd/2_"
+    ]
+  },
+  "dd.2": {
+    "sounds": [
+      "pianoplayer:dd/2"
+    ]
+  },
+  "dd.3": {
+    "sounds": [
+      "pianoplayer:dd/3"
+    ]
+  },
+  "dd.4_": {
+    "sounds": [
+      "pianoplayer:dd/4_"
+    ]
+  },
+  "dd.4": {
+    "sounds": [
+      "pianoplayer:dd/4"
+    ]
+  },
+  "dd.5_": {
+    "sounds": [
+      "pianoplayer:dd/5_"
+    ]
+  },
+  "dd.5": {
+    "sounds": [
+      "pianoplayer:dd/5"
+    ]
+  },
+  "dd.6_": {
+    "sounds": [
+      "pianoplayer:dd/6_"
+    ]
+  },
+  "dd.6": {
+    "sounds": [
+      "pianoplayer:dd/6"
+    ]
+  },
+  "dd.7": {
+    "sounds": [
+      "pianoplayer:dd/7"
+    ]
+  },
+  "ddd.1_": {
+    "sounds": [
+      "pianoplayer:ddd/1_"
+    ]
+  },
+  "ddd.1": {
+    "sounds": [
+      "pianoplayer:ddd/1"
+    ]
+  },
+  "ddd.2_": {
+    "sounds": [
+      "pianoplayer:ddd/2_"
+    ]
+  },
+  "ddd.2": {
+    "sounds": [
+      "pianoplayer:ddd/2"
+    ]
+  },
+  "ddd.3": {
+    "sounds": [
+      "pianoplayer:ddd/3"
+    ]
+  },
+  "ddd.4_": {
+    "sounds": [
+      "pianoplayer:ddd/4_"
+    ]
+  },
+  "ddd.4": {
+    "sounds": [
+      "pianoplayer:ddd/4"
+    ]
+  },
+  "ddd.5_": {
+    "sounds": [
+      "pianoplayer:ddd/5_"
+    ]
+  },
+  "ddd.5": {
+    "sounds": [
+      "pianoplayer:ddd/5"
+    ]
+  },
+  "ddd.6_": {
+    "sounds": [
+      "pianoplayer:ddd/6_"
+    ]
+  },
+  "ddd.6": {
+    "sounds": [
+      "pianoplayer:ddd/6"
+    ]
+  },
+  "ddd.7": {
+    "sounds": [
+      "pianoplayer:ddd/7"
+    ]
+  },
+  "dddd.6_": {
+    "sounds": [
+      "pianoplayer:dddd/6_"
+    ]
+  },
+  "dddd.6": {
+    "sounds": [
+      "pianoplayer:dddd/6"
+    ]
+  },
+  "dddd.7": {
+    "sounds": [
+      "pianoplayer:dddd/7"
+    ]
+  }
+}

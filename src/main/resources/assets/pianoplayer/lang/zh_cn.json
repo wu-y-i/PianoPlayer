@@ -1,4 +1,18 @@
 {
-  "item.pianoplayer.ice_ether": "冰之以太",
-  "itemGroup.pianoplayer_group": "钢琴播放器"
+  "block.pianoplayer.piano_block": "钢琴块",
+  "gui.piano.key.name": "钢琴块",
+  "gui.piano.key.volume": "音量",
+  "gui.piano.key.name1": "级别",
+  "gui.piano.key.name2": "音量",
+  "gui.piano.key.name3": "红石延时",
+  "gui.piano.key.timer_tooltip1": "红石延时",
+  "gui.piano.key.timer_tooltip2": "单位：红石刻（1秒等于20红石刻）",
+  "gui.piano.key.timer_tooltip3": "取值范围：0-120",
+  "gui.piano.key.save_tooltip": "关闭时自动保存",
+  "gui.piano.key.default_tooltip": "为音量、延时生成默认预设方案",
+  "gui.piano.key.setting_button1": "应用到默认",
+  "gui.piano.key.setting_button2": "恢复到初始",
+  "gui.piano.key.setting_button3": "保存",
+  "gui.piano.key.setting_button4": "取消"
+
 }
