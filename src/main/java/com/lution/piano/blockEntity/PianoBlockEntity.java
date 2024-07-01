@@ -5,6 +5,7 @@ import com.lution.piano.block.ModBlocks;
 import com.lution.piano.block.PianoBlock;
 import com.lution.piano.gui.PianoSetting;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -63,6 +64,7 @@ public class PianoBlockEntity extends BlockEntity
     }
 
 
+
     /**
      * getter、setter
      **********************/
@@ -76,21 +78,37 @@ public class PianoBlockEntity extends BlockEntity
             tone = 1;
         }
         this.tone = tone;
+        markDirty();
+        sync();
     }
 
     public void setVolume(int volume) {
         this.volume = volume;
+        markDirty();
+        sync();
     }
 
     public void setTimer(int timer) {
         this.timer = timer;
+        markDirty();
+        sync();
     }
 
     public void setLevel(int level) {
         this.level = level;
+        markDirty();
+        sync();
     }
 
     public void setMid(boolean mid) {
         isMid = mid;
+        markDirty();
+        sync();
+    }
+
+    public void sync(){
+        if(world!=null){
+            world.updateListeners(pos,getCachedState(),getCachedState(), Block.NOTIFY_LISTENERS);
+        }
     }
 }

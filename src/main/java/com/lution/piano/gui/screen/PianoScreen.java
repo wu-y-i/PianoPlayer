@@ -1,9 +1,14 @@
 package com.lution.piano.gui.screen;
 
+import com.lution.piano.Packet.ModMessage;
+import com.lution.piano.block.PianoBlock;
 import com.lution.piano.blockEntity.PianoBlockEntity;
 import com.lution.piano.gui.PianoSetting;
 import com.lution.piano.gui.widget.PianoKey;
-import net.minecraft.block.entity.BlockEntity;
+
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -13,19 +18,15 @@ import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.Nullable;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
-/**
- * @author
- * @Description:
- * @date 2024/6/30
- */
+
 public class PianoScreen extends Screen
 {
     private PianoSetting pianoSetting;
@@ -36,12 +37,14 @@ public class PianoScreen extends Screen
     private VolumeController volumeController;
     private boolean cancel = false;
     public PianoBlockEntity blockEntity;
-    public Map<String, PianoKey> keyMap = new HashMap<>();
 
-    public PianoScreen(Text title, PianoSetting pianoSetting, PianoBlockEntity blockEntity) {
+    private BlockState state;
+
+    public PianoScreen(Text title, PianoSetting pianoSetting, PianoBlockEntity blockEntity, BlockState blockState) {
         super(title);
         this.pianoSetting = pianoSetting;
         this.blockEntity = blockEntity;
+        state = blockState;
     }
 
     @Override
@@ -82,18 +85,6 @@ public class PianoScreen extends Screen
         PianoKey pianoF_ = new PianoKey(baseX + 140, 100, 30, 60, pianoSetting, 4, true);
         PianoKey pianoG_ = new PianoKey(baseX + 180, 100, 30, 60, pianoSetting, 5, true);
         PianoKey pianoA_ = new PianoKey(baseX + 220, 100, 30, 60, pianoSetting, 6, true);
-        keyMap.put("pianoC", pianoC);
-        keyMap.put("pianoD", pianoD);
-        keyMap.put("pianoE", pianoE);
-        keyMap.put("pianoF", pianoF);
-        keyMap.put("pianoG", pianoG);
-        keyMap.put("pianoA", pianoA);
-        keyMap.put("pianoB", pianoB);
-        keyMap.put("pianoC_", pianoC_);
-        keyMap.put("pianoD_", pianoD_);
-        keyMap.put("pianoF_", pianoF_);
-        keyMap.put("pianoG_", pianoG_);
-        keyMap.put("pianoA_", pianoA_);
         addDrawableChild(pianoC);
         addDrawableChild(pianoD);
         addDrawableChild(pianoE);
@@ -143,17 +134,16 @@ public class PianoScreen extends Screen
         if (op == 1) {
             pianoSetting.setLevel(pianoSetting.level + 1);
             if (pianoSetting.level > 3) {
-                pianoSetting.level = 3;
+                pianoSetting.setLevel(3);
             }
         }
         else if (op == -1) {
             pianoSetting.setLevel(pianoSetting.level - 1);
             if (pianoSetting.level < -3) {
-                pianoSetting.level = -3;
+                pianoSetting.setLevel(-3);
             }
         }
         level_show = level_map[pianoSetting.level + 4];
-        System.out.println(pianoSetting.level);
     }
 
     private void initTimer() {
@@ -208,9 +198,10 @@ public class PianoScreen extends Screen
     }
     private void applyTimer(){
         if (!timerField.getText().isEmpty()) {
-            pianoSetting.timer = Integer.parseInt(timerField.getText());
+            pianoSetting.setTimer(Integer.parseInt(timerField.getText()));
+            timerField.setText(pianoSetting.timer+"");
             if(pianoSetting.timer>120){
-                pianoSetting.timer=120;
+                pianoSetting.setTimer(120);
                 timerField.setText("120");
             }
         }
@@ -235,6 +226,18 @@ public class PianoScreen extends Screen
         blockEntity.setVolume(pianoSetting.volume);
         blockEntity.setMid(pianoSetting.isMid);
         blockEntity.setTimer(pianoSetting.timer);
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBlockPos(blockEntity.getPos());
+        buf.writeInt(pianoSetting.tone);
+        buf.writeInt(pianoSetting.timer);
+        buf.writeInt(pianoSetting.volume);
+        buf.writeInt(pianoSetting.level);
+        buf.writeBoolean(pianoSetting.isMid);
+        ClientPlayNetworking.send(ModMessage.PIANO_ENTITY_ID,buf);
+        if (blockEntity.getWorld() != null) {
+            blockEntity.getWorld().setBlockState(blockEntity.getPos(),state.with(PianoBlock.DELAY,pianoSetting.timer),3);
+        }
+
     }
 
     @Override

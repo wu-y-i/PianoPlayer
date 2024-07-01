@@ -1,5 +1,6 @@
 package com.lution.piano;
 
+import com.lution.piano.Packet.ModMessage;
 import com.lution.piano.block.ModBlocks;
 import com.lution.piano.blockEntity.ModBlockEntities;
 import com.lution.piano.blockEntity.PianoBlockEntity;
@@ -52,5 +53,7 @@ public class PianoPlayer implements ModInitializer {
 		LOGGER.info("Start ModBlocks Initial");
 		ModBlockEntities.registerModBlockEntities();
 		LOGGER.info("Finish ModBlocks Initial");
+
+		ModMessage.registerC2SPackets();
 	}
 }
