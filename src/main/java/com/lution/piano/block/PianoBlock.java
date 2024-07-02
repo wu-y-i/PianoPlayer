@@ -7,18 +7,15 @@ import com.lution.piano.soundEvent.ModSoundEvent;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ComparatorBlockEntity;
+
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
+
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
+
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.Property;
+import net.minecraft.state.property.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -27,11 +24,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.tick.TickPriority;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,9 +39,10 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
 
 //
     public static final BooleanProperty LOCKED;
-    public static final IntProperty DELAY;
 
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     public static final BooleanProperty SOUNDED;
+
 
 
     public PianoBlock(Settings settings) {
@@ -54,13 +50,19 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
         setDefaultState(getDefaultState()
                 .with(POWERED,false)
                 .with(LOCKED,false)
-                .with(DELAY,0)
                 .with(FACING,Direction.NORTH)
                 .with(SOUNDED,false));
     }
 
-    protected int getUpdateDelayInternal(BlockState state) {
-        return state.get(DELAY);
+
+
+    protected int getUpdateDelayInternal(World world,BlockPos pos) {
+        return getPBE(world,pos).getSettings().timer;
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
 
     @Nullable
@@ -69,15 +71,10 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
         return new PianoBlockEntity(pos, state);
     }
 
-    static {
-        LOCKED = Properties.LOCKED;
-        DELAY =  IntProperty.of("delay", 0, 120);
-        SOUNDED = BooleanProperty.of("sounded");
-    }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, DELAY, LOCKED, POWERED}).add(SOUNDED);
+        builder.add(new Property[]{FACING, LOCKED, POWERED}).add(SOUNDED);
     }
 
     @Override
@@ -108,7 +105,7 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
                 world.setBlockState(pos,state.with(SOUNDED,false));
             }
         }
-
+        //从反编译文件中复制而来
         if (state.canPlaceAt(world, pos)) {
             this.updatePowered(world, pos, state);
         } else {
@@ -131,6 +128,10 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
         return true;
     }
 
+    @Override
+    protected int getUpdateDelayInternal(BlockState state) {
+        return 0;
+    }
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -143,8 +144,25 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
             } else if (!bl) {
                 world.setBlockState(pos, (BlockState)state.with(POWERED, true), 2);
                 if (!bl2) {
-                    world.scheduleBlockTick(pos, this, getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+                    world.scheduleBlockTick(pos, this, getUpdateDelayInternal(world,pos), TickPriority.VERY_HIGH);
                 }
+            }
+
+        }
+    }
+    @Override
+    protected void updatePowered(World world, BlockPos pos, BlockState state) {
+        if (!this.isLocked(world, pos, state)) {
+            boolean bl = (Boolean)state.get(POWERED);
+            boolean bl2 = this.hasPower(world, pos, state);
+            if (bl != bl2 && !world.getBlockTickScheduler().isTicking(pos, this)) {
+                TickPriority tickPriority = TickPriority.HIGH;
+                if (this.isTargetNotAligned(world, pos, state)) {
+                    tickPriority = TickPriority.EXTREMELY_HIGH;
+                } else if (bl) {
+                    tickPriority = TickPriority.VERY_HIGH;
+                }
+                world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(world,pos), tickPriority);
             }
 
         }
@@ -195,4 +213,8 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
         return res.toString();
     }
 
+    static {
+        LOCKED = Properties.LOCKED;
+        SOUNDED = BooleanProperty.of("sounded");
+    }
 }

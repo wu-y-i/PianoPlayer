@@ -1,13 +1,10 @@
 package com.lution.piano.soundEvent;
 
 import com.lution.piano.PianoPlayer;
-import net.minecraft.client.sound.Sound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 
 import java.util.HashMap;
 import java.util.Map;

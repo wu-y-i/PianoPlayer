@@ -1,11 +1,7 @@
 package com.lution.piano.gui;
 
 
-/**
- * @author
- * @Description:
- * @date 2024/6/30
- */
+
 public class PianoSetting
 {
     public int tone;

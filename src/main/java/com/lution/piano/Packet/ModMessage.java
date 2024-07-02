@@ -1,11 +1,8 @@
 package com.lution.piano.Packet;
 
 import com.lution.piano.PianoPlayer;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 
 public class ModMessage
 {

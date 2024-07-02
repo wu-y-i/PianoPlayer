@@ -1,7 +1,6 @@
 package com.lution.piano.gui.screen;
 
 import com.lution.piano.Packet.ModMessage;
-import com.lution.piano.block.PianoBlock;
 import com.lution.piano.blockEntity.PianoBlockEntity;
 import com.lution.piano.gui.PianoSetting;
 import com.lution.piano.gui.widget.PianoKey;
@@ -23,8 +22,6 @@ import net.minecraft.text.Text;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class PianoScreen extends Screen
@@ -234,9 +231,6 @@ public class PianoScreen extends Screen
         buf.writeInt(pianoSetting.level);
         buf.writeBoolean(pianoSetting.isMid);
         ClientPlayNetworking.send(ModMessage.PIANO_ENTITY_ID,buf);
-        if (blockEntity.getWorld() != null) {
-            blockEntity.getWorld().setBlockState(blockEntity.getPos(),state.with(PianoBlock.DELAY,pianoSetting.timer),3);
-        }
 
     }
 

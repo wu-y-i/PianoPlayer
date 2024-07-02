@@ -1,10 +1,8 @@
 package com.lution.piano.Packet;
 
-import com.lution.piano.block.PianoBlock;
 import com.lution.piano.blockEntity.PianoBlockEntity;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -25,7 +23,6 @@ public class PianoEntityC2SPacket {
         server.execute(()->{
             BlockEntity blockEntity = player.getServerWorld().getBlockEntity(pos);
             if(blockEntity instanceof PianoBlockEntity pbe){
-                player.getServerWorld().setBlockState(pos,pbe.getCachedState().with(PianoBlock.DELAY,timer),3);
                 pbe.setTone(tone);
                 pbe.setMid(isMid);
                 pbe.setTimer(timer);

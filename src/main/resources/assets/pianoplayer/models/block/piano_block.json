@@ -1,6 +1,10 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/orientable",
   "textures": {
-    "all": "pianoplayer:block/piano_block"
+    "top": "pianoplayer:block/piano_block_top",
+    "side": "pianoplayer:block/piano_block",
+    "north": "pianoplayer:block/piano_block_front",
+    "south": "pianoplayer:block/piano_block_back",
+    "particle": "pianoplayer:block/piano_block"
   }
 }

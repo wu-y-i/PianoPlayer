@@ -8,11 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-/**
- * @author
- * @Description:
- * @date 2024/6/29
- */
+
 public class ModBlockEntities {
     public static final BlockEntityType<PianoBlockEntity> PIANO_BLOCK_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
