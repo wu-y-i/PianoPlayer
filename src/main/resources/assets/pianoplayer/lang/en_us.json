@@ -6,7 +6,7 @@
   "gui.piano.key.name3": "delay of red_stone",
   "gui.piano.key.volume": "volume",
   "gui.piano.key.timer_tooltip1": "delay of red_stone",
-  "gui.piano.key.timer_tooltip2": "unit: red_stone time(1 second equals to 20 red_stone time)",
+  "gui.piano.key.timer_tooltip2": "unit: time(1 second equals to 20 game time)",
   "gui.piano.key.timer_tooltip3": "range:0-120",
   "gui.piano.key.save_tooltip": "auto_save when close",
   "gui.piano.key.default_tooltip": "Generate default preset schemes for volume and delay",

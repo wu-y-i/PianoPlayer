@@ -6,7 +6,7 @@
   "gui.piano.key.name2": "音量",
   "gui.piano.key.name3": "红石延时",
   "gui.piano.key.timer_tooltip1": "红石延时",
-  "gui.piano.key.timer_tooltip2": "单位：红石刻（1秒等于20红石刻）",
+  "gui.piano.key.timer_tooltip2": "单位：刻（1秒等于20刻）",
   "gui.piano.key.timer_tooltip3": "取值范围：0-120",
   "gui.piano.key.save_tooltip": "关闭时自动保存",
   "gui.piano.key.default_tooltip": "为音量、延时生成默认预设方案",
