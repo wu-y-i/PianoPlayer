@@ -12,6 +12,7 @@ import net.minecraft.client.MinecraftClient;
 
 import net.minecraft.entity.player.PlayerEntity;
 
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -112,15 +113,23 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
             BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
             dropStacks(state, world, pos, blockEntity);
             world.removeBlock(pos, false);
-            Direction[] var8 = Direction.values();
-            int var9 = var8.length;
+            Direction[] directions = Direction.values();
 
-            for(int var10 = 0; var10 < var9; ++var10) {
-                Direction direction = var8[var10];
+            for (Direction direction : directions) {
                 world.updateNeighborsAlways(pos.offset(direction), this);
             }
 
         }
+    }
+
+    @Override
+    public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
+        PianoBlockEntity pbe = getPBE(world,pos);
+        // 将(1-7) * 3  + random{0,1,2} 以按音调映射给颜色
+        world.addParticle(ParticleTypes.NOTE,
+                (double)pos.getX() + 0.5, (double)pos.getY() + 1.2, (double)pos.getZ() + 0.5,
+                ((double)pbe.getSettings().tone * 3 + (int)Math.round(Math.random()*2)) / 24.0, 0.0, 0.0);
+        return true;
     }
 
     @Override
@@ -137,17 +146,16 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         PianoBlockEntity pbe = getPBE(world,pos);
         if (!this.isLocked(world, pos, state)) {
-            boolean bl = (Boolean)state.get(POWERED);
-            boolean bl2 = this.hasPower(world, pos, state);
-            if (bl && !bl2) {
+            boolean powered = (Boolean)state.get(POWERED);
+            boolean powering = this.hasPower(world, pos, state);
+            if (powered && !powering) {
                 world.setBlockState(pos, (BlockState)state.with(POWERED, false), 2);
-            } else if (!bl) {
+            } else if (!powered) {
                 world.setBlockState(pos, (BlockState)state.with(POWERED, true), 2);
-                if (!bl2) {
+                if (!powering) {
                     world.scheduleBlockTick(pos, this, getUpdateDelayInternal(world,pos), TickPriority.VERY_HIGH);
                 }
             }
-
         }
     }
     @Override
@@ -177,6 +185,7 @@ public class PianoBlock extends AbstractRedstoneGateBlock implements BlockEntity
         if (pianoSetting.tone == 0) {
             return;
         }
+        world.addSyncedBlockEvent(pos,this,0,0);
         String name = getSoundName(pianoSetting.tone, pianoSetting.level, pianoSetting.isMid);
         float final_volume = (float) pianoSetting.volume / 100;
         world.playSound(null, pos, ModSoundEvent.SOUND_EVENTS.get(name), SoundCategory.BLOCKS, final_volume, 1);
