@@ -97,6 +97,16 @@ public class PianoScreen extends Screen
 
     }
 
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if(keyCode == 69){
+            this.close();
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
     private void initLevel() {
         baseX = width / 2 - 270 / 2;
         int baseY = 70;
