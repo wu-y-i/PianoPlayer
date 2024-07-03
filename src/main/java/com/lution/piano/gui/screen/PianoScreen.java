@@ -68,6 +68,11 @@ public class PianoScreen extends Screen
         context.drawTextWithShadow(MinecraftClient.getInstance().textRenderer,name3, baseX+225,50,0xFFFFFFFF);
     }
 
+    @Override
+    public boolean shouldPause() {
+        return false;
+    }
+
     private void initKey() {
         baseX = width / 2 - 270 / 2;
         PianoKey pianoC = new PianoKey(baseX, 100, 30, 100, pianoSetting, 1, false);
